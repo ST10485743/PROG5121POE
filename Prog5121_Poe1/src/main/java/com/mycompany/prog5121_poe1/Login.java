@@ -10,6 +10,9 @@ import java.util.regex.Pattern;
  *
  * @author leago
  */
+
+// South African cell numbers: the '+' plus the '27' international
+    // country code, followed by no more than ten further digits.
 public class Login {
     private static final Pattern CELL_PHONE_NUMBER = Pattern.compile("^\\+27\\d{1,10}$");
     
@@ -21,6 +24,7 @@ public class Login {
     
     public Login() {
     }
+    //Makes sure that the username is not longer than five characters and that it has an underscore '_'
     
     public boolean checkUserName(String UserName) {
         if (UserName == null) {
@@ -28,6 +32,8 @@ public class Login {
         }
         return UserName.contains("_") && UserName.length() <= 5;
     }
+    // Makes sure that a password is at least eight characters long and contains a
+    // capital letter, a number, and a special character.
     
     public boolean checkPasswordComplexity(String Password) {
         if (Password == null || Password.length() < 8) {
@@ -48,10 +54,15 @@ public class Login {
         }
         return hasCapital && hasDigit && hasSpecial;
     }
-    
+    // a cell phone number is the correct length and contains the
+    // South African international country code (+27).
     public boolean checkCellPhoneNumber(String CellPhoneNumber) {
         return CellPhoneNumber != null && CELL_PHONE_NUMBER.matcher(CellPhoneNumber).matches();
     }
+
+    //Validates and stores a new user's registration details.
+     //Username, then password, then cell phone number registration checks are in order.
+     //@return a message describing the outcome of registration.
     
     public String registerUser(String FirstName,
         String LastName,
@@ -86,6 +97,9 @@ public class Login {
                 + "Cell phone number successfully added. Registration successful, "
                 + "welcome " + FirstName + " " + LastName + "!";
     }
+
+    //Verifies that the supplied username and password match the details
+     //logged in by the user.
     
     public boolean loginUser(String UserName, String Password) {
         return this.UserName != null 
@@ -93,6 +107,8 @@ public class Login {
                 && this.Password != null
                 && this.Password.equals(Password);
     }
+
+    // Appropriate message is retrned for a login attempt.
     
     public String returnLoginStatus(String UserName, String Password) {
         if (loginUser(UserName, Password)) {
