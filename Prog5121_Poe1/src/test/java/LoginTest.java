@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 /**
  *
@@ -103,4 +103,20 @@ class LoginTest {
                 + "captured. Cell phone number successfully added. "
                 + "Registration successful, welcome Kyle Peters!", result);
      }
+
+    //---------- assertEquals (login welcome message) ----------
+
+    @Test
+     void returnLoginStatus_CorrectCredentials_ReturnsWelcomeMessage() {
+         login.registerUser("Kyle", "Peters", "kyl_1", "Ch&&sec@ke99!", "+27838968976");
+         String result = login.returnLoginStatus("kyl_1", "Ch&&sec@ke99!");
+         assertEquals("Welcome Kyle, Peters it is great to see you again.", result);
+     }
+     
+     @Test
+     void returnLoginStatus_IncorrectCredentials_ReturnsErrorMessage() {
+         login.registerUser("Kyle", "Peters", "kyl_1", "Ch&&sec@ke99!", "+27838968976");
+         String result = login.returnLoginStatus("kyl_1", "wrongPassword1!");
+         assertEquals("Username or password incorrect, please try again.", result);
+     }     
 }
