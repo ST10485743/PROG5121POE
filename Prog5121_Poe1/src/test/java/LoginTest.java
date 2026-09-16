@@ -68,5 +68,39 @@ class LoginTest {
      }
 
     //---------- assertEquals Tests (registerUser Messages) ----------
-    
+
+    @Test
+     void registerUser_UsernameIncorrectlyFormatted_ReturnsUsernameMessage() {
+         String result = login.registerUser("Kyle", "Peters", "kyle!!!!!!",
+                "Ch&&sec@ke99!", "+27838968976");
+         assertEquals("Username is not correctly formatted; please ensure that "
+                + "your username contains an underscore and is no more than "
+                + "five characters in length.", result);
+     }
+     
+     @Test
+     void registerUser_PasswordDoesNotMeetComplexity_ReturnsPasswordMessage() {
+         String result = login.registerUser("Kyle", "Peters", "kyl_1",
+                "password", "+27838968976");
+         assertEquals("Password is not correctly formatted; please ensure that "
+                + "the password contains at least eight characters, a capital "
+                + "letter, a number, and a special character.", result);
+     }
+     
+     @Test
+     void registerUser_CellPhoneIncorrectlyFormatted_ReturnsCellMessage() {
+         String result = login.registerUser("Kyle", "Peters", "kyl_1",
+                "Ch&&sec@ke99!", "08966553");
+         assertEquals("Cell phone number incorrectly formatted or does not "
+                + "contain international code.", result);
+     }
+     
+     @Test
+     void registerUser_AllFieldsValid_ReturnsSuccessMessage(){
+         String result = login.registerUser("Kyle", "Peters", "kyl_1",
+                "Ch&&sec@ke99!", "+27838968976");
+         assertEquals("Username successfully captured. Password successfully "
+                + "captured. Cell phone number successfully added. "
+                + "Registration successful, welcome Kyle Peters!", result);
+     }
 }
