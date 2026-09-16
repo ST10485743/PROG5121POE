@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-
+import com.mycompany.prog5121_poe1.Login;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -105,6 +105,9 @@ class LoginTest {
      }
 
     //---------- assertEquals (login welcome message) ----------
+    //test table pairs this exact welcome-message
+    // output with a row labelled "Username is correctly formatted" and
+    // test data "kyl_1"
 
     @Test
      void returnLoginStatus_CorrectCredentials_ReturnsWelcomeMessage() {
